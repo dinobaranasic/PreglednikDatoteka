@@ -11,26 +11,32 @@ namespace DatotecniSustav01
             DirectoryInfo dirInfo = new DirectoryInfo(direktorij);
 
             var datoteke = dirInfo.GetFiles();
-            long velicina = 0;
+            float velicina = 0;
 
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
-            Console.WriteLine("| Veličina       B |          KB |      MB | Nazivi datoteka                          |");
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
+            Console.WriteLine("+------------------+-------------+---------+----------------------------------------------------------+");
+            Console.WriteLine("| Veličina       B |          KB |      MB |     GB |   TB | Nazivi datoteka                          |");
+            Console.WriteLine("+------------------+-------------+---------+--------+------+------------------------------------------+");
             foreach (FileInfo d in datoteke)
             {
                 velicina += d.Length;
-                Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3,40} |", 
+                Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 3} GB | {4, 1} TB | {5,40} |", 
                     d.Length, 
                     d.Length / 1024, 
                     d.Length / (1024 * 1024),
+                    d.Length / (1024 * 1024 * 1024),
+                    (d.Length / (1024 * 1024 * 1024))/(1024),
                     d.FullName);
             }
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
-            Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB |                                          |",
+            Console.WriteLine("+------------------+-------------+---------+--------+------+------------------------------------------+");
+            Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 3} GB | {4, 1} TB |                                          |",
                 velicina,
                 velicina / 1024,
-                velicina / (1024 * 1024));
-            Console.WriteLine("+------------------+-------------+---------+------------------------------------------+");
+                velicina / (1024 * 1024),
+                velicina / (1024 * 1024 * 1024),
+                (velicina / (1024 * 1024 * 1024)) / (1024)
+                );
+
+            Console.WriteLine("+------------------+-------------+---------+--------+------+------------------------------------------+");
 
             Console.SetCursorPosition(1, 3);
             Console.Write(">");
