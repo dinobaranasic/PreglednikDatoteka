@@ -15,7 +15,7 @@ namespace DatotecniSustav01
             float velicina = 0;
             //maksimalni naziv
             int nazivmax = 0;
-
+            
             //pomocu foreach trazimo najdulji naziv i spremamo ga u nazivmax
             foreach (FileInfo d in datoteke)
             {
