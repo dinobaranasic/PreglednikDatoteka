@@ -7,36 +7,47 @@ namespace DatotecniSustav01
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("C:");
             string direktorij = @"C:\";
             DirectoryInfo dirInfo = new DirectoryInfo(direktorij);
-
             var datoteke = dirInfo.GetFiles();
-            float velicina = 0;
 
-            Console.WriteLine("+------------------+-------------+---------+----------------------------------------------------------+");
-            Console.WriteLine("| Veličina       B |          KB |      MB |     GB |   TB | Nazivi datoteka                          |");
-            Console.WriteLine("+------------------+-------------+---------+--------+------+------------------------------------------+");
+            float velicina = 0;
+            int nazivmax = 0;
+
+            foreach (FileInfo d in datoteke)
+            {
+                if (d.FullName.Length > nazivmax)
+                {
+                    nazivmax = d.FullName.Length;
+                }
+            }
+            Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
+            Console.Write("| B                |          KB |      MB |     GB |   TB |"); Console.Write("Naziv Diska".PadRight(nazivmax)); Console.WriteLine("+");
+            Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
+
             foreach (FileInfo d in datoteke)
             {
                 velicina += d.Length;
-                Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 3} GB | {4, 1} TB | {5,40} |", 
-                    d.Length, 
-                    d.Length / 1024, 
+                Console.Write("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 3} GB | {4, 1} TB |",
+                    d.Length,
+                    d.Length / 1024,
                     d.Length / (1024 * 1024),
                     d.Length / (1024 * 1024 * 1024),
-                    (d.Length / (1024 * 1024 * 1024))/(1024),
-                    d.FullName);
+                    (d.Length / (1024 * 1024 * 1024)) / 1024);
+                    Console.Write("{0}".PadRight((nazivmax + 3) - d.FullName.Length), d.FullName); Console.WriteLine("|");
             }
-            Console.WriteLine("+------------------+-------------+---------+--------+------+------------------------------------------+");
-            Console.WriteLine("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 3} GB | {4, 1} TB |                                          |",
+
+            Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
+            Console.Write("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 3} GB | {4, 1} TB |",
                 velicina,
                 velicina / 1024,
-                velicina / (1024 * 1024),
-                velicina / (1024 * 1024 * 1024),
-                (velicina / (1024 * 1024 * 1024)) / (1024)
-                );
+                Math.Round(velicina / (1024 * 1024)),
+                Math.Round(velicina / (1024 * 1024 * 1024)),
+                Math.Round((velicina / (1024 * 1024 * 1024)) / (1024)));
 
-            Console.WriteLine("+------------------+-------------+---------+--------+------+------------------------------------------+");
+            Console.WriteLine();
+            Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
 
             Console.SetCursorPosition(1, 3);
             Console.Write(">");
