@@ -13,8 +13,10 @@ namespace DatotecniSustav01
             var datoteke = dirInfo.GetFiles();
 
             float velicina = 0;
+            //maksimalni naziv
             int nazivmax = 0;
 
+            //pomocu foreach trazimo najdulji naziv i spremamo ga u nazivmax
             foreach (FileInfo d in datoteke)
             {
                 if (d.FullName.Length > nazivmax)
@@ -22,6 +24,8 @@ namespace DatotecniSustav01
                     nazivmax = d.FullName.Length;
                 }
             }
+
+            //pomocu PadRight metode kreiramo fleksibilnu širinu tablice prema nazivmax
             Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
             Console.Write("| B                |          KB |      MB |     GB |   TB |"); Console.Write("Naziv Diska".PadRight(nazivmax)); Console.WriteLine("+");
             Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
@@ -42,6 +46,7 @@ namespace DatotecniSustav01
             Console.Write("|{0, 15} B | {1, 8} KB | {2, 4} MB | {3, 3} GB | {4, 1} TB |",
                 velicina,
                 velicina / 1024,
+                //zaokružujemo vrijednosti da bi nam stale unutar tablice
                 Math.Round(velicina / (1024 * 1024)),
                 Math.Round(velicina / (1024 * 1024 * 1024)),
                 Math.Round((velicina / (1024 * 1024 * 1024)) / (1024)));
