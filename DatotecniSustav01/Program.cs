@@ -27,7 +27,7 @@ namespace DatotecniSustav01
 
             //pomocu PadRight metode kreiramo fleksibilnu širinu tablice prema nazivmax
             Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
-            Console.Write("| B                |          KB |      MB |     GB |   TB |"); Console.Write("Naziv Diska".PadRight(nazivmax)); Console.WriteLine("+");
+            Console.Write("| B                |          KB |      MB |     GB |   TB |"); Console.Write("Naziv datoteka".PadRight(nazivmax)); Console.WriteLine("+");
             Console.Write("+------------------+-------------+---------+--------+------+"); Console.Write("-".PadRight(nazivmax, '-')); Console.WriteLine("+");
 
             foreach (FileInfo d in datoteke)
